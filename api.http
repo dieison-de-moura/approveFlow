@@ -1,0 +1,23 @@
+### ping
+GET http://localhost:8001/api/ping HTTP/1.1
+content-type: application/json
+
+### show
+GET http://localhost:8001/api/invoice/show/0ef49b0e-67ae-428d-be72-0f57530091da HTTP/1.1
+content-type: application/json
+
+### approve
+POST http://localhost:8001/api/invoice/approve HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0ef49b0e-67ae-428d-be72-0f57530091da"
+}
+
+### reject
+POST http://localhost:8001/api/invoice/reject HTTP/1.1
+content-type: application/json
+
+{
+    "id": "156ce6a5-2755-4101-81d3-4639596f84e6"
+}
