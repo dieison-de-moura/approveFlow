@@ -20,7 +20,7 @@ final class InvoiceRepository implements InvoiceRepositoryInterface
     {
         $invoice = $this->model->find($id);
 
-        if (is_null($invoice)) {
+        if (!$invoice) {
             return null;
         }
 
@@ -30,7 +30,7 @@ final class InvoiceRepository implements InvoiceRepositoryInterface
             $invoice->date,
             $invoice->due_date,
             $invoice->company_id,
-            InvoiceStatusEnum::tryFrom($invoice->status),
+            InvoiceStatusEnum::from($invoice->status),
         );
     }
 
@@ -41,6 +41,8 @@ final class InvoiceRepository implements InvoiceRepositoryInterface
     {
         $invoice = $this->model->find($id);
 
-        $invoice->update($data);
+        if ($invoice) {
+            $invoice->update($data);
+        }
     }
 }

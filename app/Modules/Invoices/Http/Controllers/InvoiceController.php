@@ -72,24 +72,18 @@ class InvoiceController extends Controller
         );
 
         $data = [
+            'invoice_id'     => $invoice->id,
             'invoice_number' => $invoice->number,
-            'invoice_date' => $invoice->date,
-            'due_date' => $invoice->due_date,
-            'status' => $invoice->status,
+            'invoice_date'   => $invoice->date,
+            'due_date'       => $invoice->dueDate,
+            'status'         => $invoice->status,
             'company' => [
-                'name' => 'Company ABC',
+                'name'           => 'Company ABC',
                 'street_address' => '123 Dooley Bridge',
-                'city' => 'Port Marlee',
-                'zip_code' => '51017-9006',
-                'phone' => '-',
-            ],
-            'billed_company' => [
-                'name' => 'name',
-                'street_address' => 'street',
-                'city' => 'todo',
-                'zip_code' => 'todo',
-                'phone' => 'todo',
-                'email_address' => 'todo',
+                'city'           => 'Port Marlee',
+                'zip_code'       => '51017-9006',
+                'phone'          => '-',
+                'email_address'  => 'todo',
             ],
             'products' => 'todo',
             // 'total_price' => array_sum(array_column($products, 'Total'))
@@ -99,7 +93,7 @@ class InvoiceController extends Controller
     }
 
     /**
-     * sen a response
+     * send a response
      *
      * @param array  $data
      * @param string $message

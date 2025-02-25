@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Modules\Approval\Contracts;
 
 use App\Modules\Approval\Dto\ApprovalDto;
+use LogicException;
 
 interface ApprovalInterface
 {
@@ -15,7 +16,7 @@ interface ApprovalInterface
      * @return true
      * @throws LogicException
      */
-    public function approve(ApprovalDto $entity): true;
+    public function approve(ApprovalDto $approvalDto): true;
 
     /**
      * Reject invoice
@@ -24,5 +25,5 @@ interface ApprovalInterface
      * @return true
      * @throws LogicException
      */
-    public function reject(ApprovalDto $entity): true;
+    public function reject(ApprovalDto $approvalDto): true;
 }

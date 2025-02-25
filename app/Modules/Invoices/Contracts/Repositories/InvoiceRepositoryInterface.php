@@ -7,7 +7,7 @@ use App\Modules\Invoices\Entities\Invoice;
 interface InvoiceRepositoryInterface
 {
     /**
-     * @param int $id
+     * @param string $id
      * @return Invoice|null
      */
     public function find(string $id): ?Invoice;

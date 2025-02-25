@@ -9,7 +9,6 @@ use Ramsey\Uuid\UuidInterface;
 
 final readonly class ApprovalDto
 {
-    /** @param class-string $entity */
     public function __construct(
         public UuidInterface $id,
         public InvoiceStatusEnum $status,

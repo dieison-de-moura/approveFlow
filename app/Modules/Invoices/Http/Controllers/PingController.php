@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 
 class PingController extends Controller
 {
-    
     /**
      * Responds with a JSON object containing 'pong' to indicate service availability.
      *

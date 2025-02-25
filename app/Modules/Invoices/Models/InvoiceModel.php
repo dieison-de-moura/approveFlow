@@ -25,11 +25,6 @@ class InvoiceModel extends Model
         'id' => 'string',
     ];
 
-    public function company()
-    {
-        return $this->belongsTo(CompanyModel::class, 'company_id');
-    }
-
     protected static function newFactory(): InvoiceFactory
     {
         return InvoiceFactory::new();

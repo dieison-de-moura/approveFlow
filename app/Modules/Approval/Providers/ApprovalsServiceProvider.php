@@ -17,7 +17,7 @@ class ApprovalsServiceProvider extends ServiceProvider implements DeferrableProv
     }
 
     /**
-     * @return array<class-string> 
+     * @return array<class-string>
      */
     public function provides(): array
     {

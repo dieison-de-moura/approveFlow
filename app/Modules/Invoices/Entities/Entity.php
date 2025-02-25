@@ -9,7 +9,6 @@ class Entity
      *
      * @param string $property
      * @return mixed
-     * @throws PropertyNotFoundException
      */
     public function __get(string $property): mixed
     {

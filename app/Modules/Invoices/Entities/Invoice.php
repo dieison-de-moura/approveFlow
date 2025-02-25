@@ -7,12 +7,12 @@ use App\Domain\Enums\InvoiceStatusEnum;
 final class Invoice extends Entity
 {
     public function __construct(
-        protected string $id,
-        protected string $number,
-        protected string $date,
-        protected string $dueDate,
-        protected string $companyId,
-        protected InvoiceStatusEnum $status
+        public string $id,
+        public string $number,
+        public string $date,
+        public string $dueDate,
+        public string $companyId,
+        public InvoiceStatusEnum $status
     ) {
     }
 }

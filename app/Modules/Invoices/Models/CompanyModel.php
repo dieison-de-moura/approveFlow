@@ -27,11 +27,6 @@ class CompanyModel extends Model
         'id' => 'string',
     ];
 
-    public function Invoices(): HasMany
-    {
-        return $this->hasMany(InvoiceModel::class, 'company_id');
-    }
-
     protected static function newFactory(): CompanyFactory
     {
         return CompanyFactory::new();

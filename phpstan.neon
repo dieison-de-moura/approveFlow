@@ -1,0 +1,11 @@
+parameters:
+    level: 5
+    parallel:
+        maximumNumberOfProcesses: 10
+    paths:
+        - app/
+    excludePaths:
+        - app/Modules/Invoices/Database/*
+    ignoreErrors:
+        -
+            message: '#Call to an undefined method App\\Modules\\Invoices\\Models\\InvoiceModel::find\(\)#'
