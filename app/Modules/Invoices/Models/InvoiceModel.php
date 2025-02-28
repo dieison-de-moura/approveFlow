@@ -21,6 +21,8 @@ class InvoiceModel extends Model
         'status',
     ];
 
+    public $incrementing = false;
+
     protected $casts = [
         'id' => 'string',
     ];
