@@ -2,18 +2,18 @@
 
 namespace App\Modules\Invoices\Application;
 
-use App\Modules\Approval\Contracts\ApprovalInterface;
 use App\Modules\Approval\Dto\ApprovalDto;
 use App\Modules\Invoices\Contracts\Application\InvoiceFinderInterface;
 use App\Modules\Invoices\Contracts\Application\InvoiceRejectorInterface;
 use App\Modules\Invoices\Exceptions\UnprocessableContentException;
 use LogicException;
 use Ramsey\Uuid\Uuid;
+use App\Modules\Invoices\Contracts\Services\InvoiceApprovalServiceInterface;
 
 final class InvoiceRejector implements InvoiceRejectorInterface
 {
     /**
-     * @inhaeritDoc
+     * {@inheritDoc}
      */
     public function reject(string $id): void
     {
@@ -29,8 +29,8 @@ final class InvoiceRejector implements InvoiceRejectorInterface
 
         try {
             with(
-                app(ApprovalInterface::class),
-                fn(ApprovalInterface $approval) => $approval->reject($dto)
+                app(InvoiceApprovalServiceInterface::class),
+                fn(InvoiceApprovalServiceInterface $service) => $service->reject($dto)
             );
         } catch (LogicException $error) {
             throw new UnprocessableContentException($error->getMessage(), 422, $error);

@@ -90,4 +90,30 @@ class InvoiceControllerTest extends TestCase
         $response = $this->getJson("/api/invoices/''");
         $response->assertStatus(404);
     }
+
+    public function testListInvoices(): void
+    {
+        $invoice = InvoiceModel::factory()->count(10)->create();
+
+        $response = $this->getJson("/api/invoice");
+
+        $response->assertStatus(200);
+        $response->assertJsonStructure([
+            'data',
+            'message',
+            'status',
+            'meta' => [
+                'total',
+                'per_page',
+                'current_page',
+                'last_page',
+            ],
+        ]);
+
+        $this->assertCount(10, $response->json('data'));
+        $this->assertEquals(10, $response->json('meta.total'));
+        $this->assertEquals(15, $response->json('meta.per_page'));
+        $this->assertEquals(1, $response->json('meta.current_page'));
+        $this->assertEquals(1, $response->json('meta.last_page'));
+    }
 }

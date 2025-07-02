@@ -6,6 +6,7 @@ use App\Domain\Enums\InvoiceStatusEnum;
 use App\Modules\Invoices\Contracts\Repositories\InvoiceRepositoryInterface;
 use App\Modules\Invoices\Entities\Invoice;
 use App\Modules\Invoices\Models\InvoiceModel;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 final class InvoiceRepository implements InvoiceRepositoryInterface
 {
@@ -44,5 +45,13 @@ final class InvoiceRepository implements InvoiceRepositoryInterface
         if ($invoice) {
             $invoice->update($data);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function paginate(int $perPage = 15): LengthAwarePaginator
+    {
+        return $this->model->paginate($perPage);
     }
 }

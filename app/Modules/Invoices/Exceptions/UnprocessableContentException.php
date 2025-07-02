@@ -16,7 +16,9 @@ class UnprocessableContentException extends Exception
     public function render(): JsonResponse
     {
         return response()->json([
-            'error' => $this->getMessage(),
+            'error'  => $this->getMessage(),
+            'status' => $this->getCode(),
+            'data'   => [],
         ], $this->getCode());
     }
 }

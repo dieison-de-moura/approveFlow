@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Modules\Invoices\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use App\Modules\Invoices\Contracts\Application\InvoicePaginatedListInterface;
 
 class InvoiceController extends Controller
 {
@@ -90,6 +91,36 @@ class InvoiceController extends Controller
         ];
 
         return $this->sendResponse($data, 'Success', 200);
+    }
+
+    /**
+     * Lista invoices com paginação.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function index(Request $request): JsonResponse
+    {
+        $perPage = (int) $request->query('per_page', 15);
+        $paginator = with(
+            app(InvoicePaginatedListInterface::class),
+            fn(InvoicePaginatedListInterface $useCase) => $useCase->paginate($perPage)
+        );
+
+        return response()->json(
+            [
+                'data' => $paginator->items(),
+                'message' => 'Success',
+                'status'  => 200,
+                'meta' => [
+                    'total' => $paginator->total(),
+                    'per_page' => $paginator->perPage(),
+                    'current_page' => $paginator->currentPage(),
+                    'last_page' => $paginator->lastPage(),
+                ],
+            ],
+            200
+        );
     }
 
     /**

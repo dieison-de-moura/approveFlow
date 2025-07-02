@@ -19,6 +19,7 @@ Route::get('/ping', function () {
 });
 
 Route::prefix('invoice')->group(function () {
+    Route::get('/', [InvoiceController::class, 'index']);
     Route::post('/approve', [InvoiceController::class, 'approve']);
     Route::post('/reject', [InvoiceController::class, 'reject']);
     Route::get('/show/{id}', [InvoiceController::class, 'show']);
