@@ -48,10 +48,11 @@ final class InvoiceRepository implements InvoiceRepositoryInterface
     }
 
     /**
-     * {@inheritDoc}
+     * @inheritDoc
      */
     public function paginate(int $perPage = 15): LengthAwarePaginator
     {
+        /** @phpstan-ignore-next-line */
         return $this->model->paginate($perPage);
     }
 }

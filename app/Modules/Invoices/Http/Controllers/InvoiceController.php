@@ -101,10 +101,10 @@ class InvoiceController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $perPage = (int) $request->query('per_page', 15);
+        $perPage = $request->query('per_page', "15");
         $paginator = with(
             app(InvoicePaginatedListInterface::class),
-            fn(InvoicePaginatedListInterface $useCase) => $useCase->paginate($perPage)
+            fn(InvoicePaginatedListInterface $useCase) => $useCase->paginate((int) $perPage)
         );
 
         return response()->json(
